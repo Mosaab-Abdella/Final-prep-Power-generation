@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="claude:viewport-fit-sides" content="cover"><title>Sheet 7 Guide</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>
+:root{--bg:#F1F4F7;--surface:#FFFFFF;--surface2:#E9EEF3;--ink:#121D28;--muted:#546577;--line:#D3DBE3;--accent:#0B6B78;--accent-ink:#FFFFFF;--accent-soft:#DDF0F2;
+--hot:#C0420B;--cold:#1C5FA6;--ok:#17794A;--ok-soft:#DDF3E7;--warn:#9A5B00;--warn-soft:#FBEED2;--bad:#B3261E;--bad-soft:#FBE3E1;--ans:#E4F2F3;
+--hfont:'Archivo','Arial Narrow',system-ui,sans-serif;--bfont:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--mfont:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0C131A;--surface:#131D27;--surface2:#1B2733;--ink:#E7EEF4;--muted:#93A4B5;--line:#263543;--accent:#52C4D1;--accent-ink:#06222A;--accent-soft:#12343B;
+--hot:#FB923C;--cold:#6FAEF2;--ok:#4ADE80;--ok-soft:#10301F;--warn:#F5B94A;--warn-soft:#3A2B0B;--bad:#FF8A80;--bad-soft:#3C1714;--ans:#10303A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C131A;--surface:#131D27;--surface2:#1B2733;--ink:#E7EEF4;--muted:#93A4B5;--line:#263543;--accent:#52C4D1;--accent-ink:#06222A;--accent-soft:#12343B;
+--hot:#FB923C;--cold:#6FAEF2;--ok:#4ADE80;--ok-soft:#10301F;--warn:#F5B94A;--warn-soft:#3A2B0B;--bad:#FF8A80;--bad-soft:#3C1714;--ans:#10303A;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--bfont);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+a{color:var(--accent)} 
+.wrap{max-width:940px;margin:0 auto;padding-block:20px 80px}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 0;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));background:var(--surface);border-bottom:1px solid var(--line);display:flex;gap:6px;align-items:center;overflow-x:auto;white-space:nowrap}
+nav.top .brand{font:700 13px var(--hfont);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:8px;flex:none}
+nav.top a.tab{flex:none;text-decoration:none;color:var(--ink);font:600 14px var(--hfont);padding:7px 12px;border-radius:8px;border:1px solid transparent}
+nav.top a.tab:hover{background:var(--surface2)}
+nav.top a.tab[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+nav.top .sp{flex:1}
+nav.top button{flex:none;font:600 12px var(--hfont);border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--hfont);line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:700;margin-top:44px;margin-bottom:12px}
+h3{font-size:18px;font-weight:700;margin:22px 0 8px}
+h4{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+p{margin:8px 0}
+.lede{font-size:18px;color:var(--muted);max-width:62ch;margin-top:10px}
+.eyebrow{font:700 12px var(--hfont);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+code,.m{font-family:var(--mfont);font-size:.92em}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0}
+.jump a{font:600 13px var(--hfont);text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:5px 10px;display:inline-flex;gap:6px;align-items:center}
+.jump a:hover{border-color:var(--accent)}
+.jump a.done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.prob{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-top:22px}
+.prob>header{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px}
+.prob .num{flex:none;font:800 15px var(--hfont);background:var(--accent);color:var(--accent-ink);border-radius:8px;min-width:34px;height:34px;display:grid;place-items:center;padding:0 8px}
+.prob header h3{margin:0;font-size:20px;flex:1;min-width:200px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 0}
+.tag{font:600 12px var(--hfont);border-radius:99px;padding:2px 10px;background:var(--surface2);color:var(--muted)}
+.tag.hit{background:var(--warn-soft);color:var(--warn)}
+.tag.noans{background:var(--bad-soft);color:var(--bad)}
+.done-box{margin-left:auto;display:flex;gap:6px;align-items:center;font:600 13px var(--hfont);color:var(--muted);cursor:pointer}
+.done-box input{width:18px;height:18px;accent-color:var(--ok)}
+.stmt{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--ink);margin:10px 0}
+.stmt p{margin:4px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.two{grid-template-columns:1fr}.prob{padding:16px}}
+.panel{background:var(--surface2);border-radius:10px;padding:10px 14px;min-width:0}
+.panel h4{margin-top:0}
+.panel ul{margin:4px 0;padding-left:18px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0}
+.steps>li{counter-increment:s;position:relative;padding:4px 0 10px 40px;min-width:0}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:3px;width:26px;height:26px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);font:700 13px var(--hfont);display:grid;place-items:center}
+.steps>li>b:first-child{font-family:var(--hfont);font-size:15.5px;display:block}
+.eq{font-family:var(--mfont);font-size:14.5px;background:var(--surface2);border-radius:8px;padding:7px 12px;margin:6px 0;overflow-x:auto;white-space:pre}
+.eq.wrap2{white-space:pre-wrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.25}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+.tblwrap{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font:700 12px var(--hfont);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:left;background:var(--surface2);padding:8px 10px;white-space:nowrap}
+td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mfont);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.how{color:var(--muted);min-width:240px}
+td.st{font-weight:700;font-family:var(--hfont);white-space:nowrap}
+.ans{background:var(--ans);border:1.5px solid var(--accent);border-radius:12px;padding:12px 16px;margin:14px 0 4px}
+.ans h4{color:var(--accent);margin:0 0 4px}
+.ans .big{font:700 17px var(--mfont);font-variant-numeric:tabular-nums}
+.ans ul{margin:4px 0;padding-left:18px}
+.call{border-radius:10px;padding:10px 14px;margin:12px 0;font-size:15px}
+.call b.k{font:700 12px var(--hfont);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+.call.tip{background:var(--ok-soft);} .call.tip b.k{color:var(--ok)}
+.call.trap{background:var(--warn-soft);} .call.trap b.k{color:var(--warn)}
+.call.chk{background:var(--accent-soft);} .call.chk b.k{color:var(--accent)}
+.call.bad{background:var(--bad-soft);} .call.bad b.k{color:var(--bad)}
+.call p{margin:3px 0}
+figure.fig{margin:14px 0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 10px 6px}
+.figscroll{overflow-x:auto}
+.fig figcaption{font-size:13.5px;color:var(--muted);padding:6px 6px 4px;max-width:78ch}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
+.figs figure.fig{margin:6px 0}
+svg text{font-family:var(--bfont);fill:var(--ink)}
+svg .t{font-size:12.5px} svg .ts{font-size:10.5px;fill:var(--muted)} svg .ta{font-size:11.5px;fill:var(--muted)} svg .bt{font-size:10.5px;font-weight:700;fill:var(--accent-ink)}
+svg .tb{font-size:12.5px;font-weight:700} svg .th{fill:var(--hot);font-size:11.5px;font-weight:600} svg .tc{fill:var(--cold);font-size:11.5px;font-weight:600} svg .tk{fill:var(--accent);font-size:11.5px;font-weight:600}
+svg .ln{stroke:var(--ink);stroke-width:1.6;fill:none} svg .thin{stroke:var(--muted);stroke-width:1;fill:none}
+svg .hot{stroke:var(--hot);stroke-width:2.2;fill:none} svg .cold{stroke:var(--cold);stroke-width:2.2;fill:none}
+svg .acc{stroke:var(--accent);stroke-width:2.4;fill:none}
+svg .dome{stroke:var(--muted);stroke-width:1.6;fill:var(--surface2);fill-opacity:.55}
+svg .grid{stroke:var(--line);stroke-width:1} svg .ax{stroke:var(--muted);stroke-width:1.2}
+svg .box{fill:var(--surface);stroke:var(--ink);stroke-width:1.5} svg .boxh{fill:var(--surface2);stroke:var(--hot);stroke-width:1.6} svg .boxc{fill:var(--surface2);stroke:var(--cold);stroke-width:1.6} svg .boxa{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.6}
+svg .badge{fill:var(--accent);stroke:none} svg .badgeh{fill:var(--hot)} svg .dot{fill:var(--ink)}
+svg .ahp{fill:var(--ink)} svg .water{fill:var(--cold);fill-opacity:.35;stroke:none} svg .steamf{fill:var(--hot);fill-opacity:.18;stroke:none}
+svg .dash{stroke:var(--muted);stroke-dasharray:4 4;stroke-width:1;fill:none}
+details.reveal{border:1px dashed var(--line);border-radius:10px;padding:8px 14px;margin:12px 0;background:var(--surface)}
+details.reveal>summary{cursor:pointer;font:700 14px var(--hfont);color:var(--accent);list-style:none}
+details.reveal>summary::before{content:"▸ ";} details.reveal[open]>summary::before{content:"▾ ";}
+details.reveal[open]{border-style:solid}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px;margin:12px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.card h3{margin-top:0;font-size:17px}
+.card a.go{font:700 14px var(--hfont);text-decoration:none}
+.meter{height:6px;background:var(--surface2);border-radius:4px;overflow:hidden;margin:8px 0 2px}
+.meter>i{display:block;height:100%;background:var(--ok);width:0}
+.small{font-size:13.5px;color:var(--muted)}
+kbd,.chip{font:600 12.5px var(--mfont);background:var(--surface2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.back{font:600 13px var(--hfont);text-decoration:none;color:var(--muted);margin-left:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;flex-wrap:wrap}
+.pager a{font:700 15px var(--hfont);text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 16px}
+.pager a:hover{border-color:var(--accent)}
+sub,sup{line-height:0}
+@media print{nav.top,.jump,.pager,.done-box,.back{display:none}.prob{break-inside:avoid-page}details.reveal>*{display:block}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body><nav class="top"><span class="brand">MEPS415 · Final</span><a class="tab" href="index.html">Home</a><a class="tab" href="sheet1.html">Sheet 1</a><a class="tab" href="sheet2.html">Sheet 2</a><a class="tab" href="sheet3.html">Sheet 3</a><a class="tab" href="sheet4.html">Sheet 4 · Diesel</a><a class="tab" href="sheet5.html">Sheet 5 · Gas turbine</a><a class="tab" href="sheet6.html">Sheet 6 · Combined</a><a class="tab" href="sheet7.html" aria-current="page">Sheet 7 · Cooling</a><a class="tab" href="finals.html">Finals</a><a class="tab" href="practice.html">Practice</a><span class="sp"></span><button id="themebtn" type="button">Light / dark</button></nav><main class="wrap"><p class="eyebrow">Sheet 7 · Lectures 10–11 · Cooling towers</p><h1>Sheet 7 guide</h1>
+    <p class="lede">Q7 is the most exam-like (psychrometrics plus fan power). Q1 and Q2 are Merkel-number drills. Where a problem lacks data, the missing item is flagged instead of guessed.</p><div class="jump" id="top"><a href="#s7-1" data-pid="s7-1">Q1</a><a href="#s7-2" data-pid="s7-2">Q2</a><a href="#s7-3" data-pid="s7-3">Q3</a><a href="#s7-4" data-pid="s7-4">Q4</a><a href="#s7-5" data-pid="s7-5">Q5</a><a href="#s7-7" data-pid="s7-7">Q7</a><a href="#s7-x" data-pid="s7-x">Q6·8</a></div><div class="card"><h3>Formula sheet (Lecture 10–11)</h3>
+    <div class="eq wrap2">Range R = T<sub>w1</sub> − T<sub>w2</sub>;   approach AP = T<sub>w2</sub> − T<sub>wb</sub>;   L/G = water-to-air mass ratio</div>
+    <div class="eq wrap2">Energy balance:  h<sub>a2</sub> = h<sub>a1</sub> + (L/G)·c<sub>pw</sub>(T<sub>w1</sub> − T<sub>w2</sub>)   (neglecting evaporation loss in the water term)</div>
+    <div class="eq wrap2">Merkel number:  KaV/L = c<sub>pw</sub> ∫ dT/(h<sub>s</sub> − h<sub>a</sub>) ≈ c<sub>pw</sub>·R/4 · Σ 1/(h<sub>s,i</sub> − h<sub>a,i</sub>)</div>
+    <div class="eq wrap2">Four-point Chebyshev: T<sub>i</sub> = T<sub>w2</sub> + R·(0.1, 0.4, 0.6, 0.9);  h<sub>a,i</sub> = h<sub>a1</sub> + (L/G)c<sub>pw</sub>(T<sub>i</sub> − T<sub>w2</sub>)</div>
+    <div class="eq wrap2">Moist air: w = 0.622 p<sub>v</sub>/(p − p<sub>v</sub>);   h = 1.006T + w(2501 + 1.86T) kJ/kg dry air</div>
+    <div class="eq wrap2">Evaporation: E = G(w₂ − w₁);   make-up = E/L;   fan power = Δp·V̇/η</div>
+    <ul class="small"><li>Dry tower: the water never touches the air, so the limit is the <b>dry-bulb</b> temperature and sensible heat only (temperature stacking).</li><li>Wet tower: the limit is the <b>wet-bulb</b> temperature; most of the heat leaves as latent heat of evaporation (≈ 2 % of the water flow).</li></ul></div><section class="prob" id="s7-1"><header><span class="num">1</span><h3>Counter-flow tower: exit air and Merkel number (Sheet 7 Q1)</h3><label class="done-box"><input type="checkbox" data-pid="s7-1"> I can solve this</label></header><div class="tags"><span class="tag">Lecture 11</span><span class="tag noans">No sheet solution</span></div><div class="stmt"><p>Counter-flow wet tower: water 44 → 29 °C; ambient air 23 °C dry bulb, 20 °C wet bulb. Find the exit-air conditions for 0.1 % evaporation and the tower characteristic for L/G = 1.3.</p></div><ol class='steps'><li><b>Inlet air.</b> From T<sub>db</sub> = 23, T<sub>wb</sub> = 20: w₁ = 0.0134, h<sub>a1</sub> = 57.3 kJ/kg.</li><li><div class="eq wrap2">h<sub>a2</sub> = h<sub>a1</sub> + 1.3×4.186×(44 − 29) = 139.0 kJ/kg</div></li><li><b>Exit air.</b> A literal 0.1 % evaporation gives w₂ = w₁ + 0.001×1.3 and T₂ = 99 °C, which is impossible. So the exit air is taken <b>saturated</b>: <div class="eq wrap2">T₂ = 36.45 °C, φ = 100 %, w₂ = 0.0398</div> The evaporation is then ≈ 2.03 % of the water flow.</li><li><b>Merkel number</b> (4 points):<table class='t'><tr><th>T<sub>w</sub> °C</th><th>h<sub>a</sub></th><th>h<sub>s</sub></th><th>h<sub>s</sub> − h<sub>a</sub></th></tr><tr><td>30.5</td><td>65.5</td><td>102.4</td><td>36.9</td></tr><tr><td>35.0</td><td>90.0</td><td>129.1</td><td>39.1</td></tr><tr><td>38.0</td><td>106.3</td><td>150.3</td><td>44.0</td></tr><tr><td>42.5</td><td>130.8</td><td>188.3</td><td>57.5</td></tr></table><div class="eq wrap2">KaV/L = 4.186×15/4 × Σ 1/(h<sub>s</sub> − h<sub>a</sub>) = 1.457</div></li></ol><div class="ans"><h4>Final answer</h4><ul><li>Exit air ≈ 36.5 °C, saturated</li><li><span class='big'>KaV/L ≈ 1.46</span></li></ul></div><div class="call trap"><b class="k">The 0.1 % figure</b>Taken literally, 0.1 % evaporation does not match an energy balance of this size. State the saturated-exit assumption in the exam and move on.</div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-2"><header><span class="num">2</span><h3>Cross-flow tower, two wet-bulb cases (Sheet 7 Q2)</h3><label class="done-box"><input type="checkbox" data-pid="s7-2"> I can solve this</label></header><div class="tags"><span class="tag">Lecture 11</span><span class="tag noans">No sheet solution</span></div><div class="stmt"><p>Cross-flow tower, L/G = 1.25, dry bulb 27 °C, range 14 °C, approach 6 °C, 0.5 % evaporation. Find the tower characteristic and exit air for (a) T<sub>wb</sub> = 24 °C, (b) T<sub>wb</sub> = 20.5 °C.</p></div><h4>(a)</h4><ol class='steps'><li>T<sub>wb</sub> = 24 °C: T<sub>w2</sub> = 30, T<sub>w1</sub> = 44 °C. w₁ = 0.0176; h<sub>a1</sub> = 72.1.</li><li>h<sub>a2</sub> = 72.1 + 1.25×4.186×14 = 145.3; saturated exit ⇒ T₂ = 37.3 °C.</li><li><div class="eq wrap2">KaV/L = 1.666</div></li></ol><h4>(b)</h4><ol class='steps'><li>T<sub>wb</sub> = 20.5 °C: T<sub>w2</sub> = 26.5, T<sub>w1</sub> = 40.5 °C. w₁ = 0.0124; h<sub>a1</sub> = 58.9.</li><li>h<sub>a2</sub> = 58.9 + 1.25×4.186×14 = 132.2; saturated exit ⇒ T₂ = 35.5 °C.</li><li><div class="eq wrap2">KaV/L = 2.276</div></li></ol><div class="ans"><h4>Final answer</h4><ul><li>(a) KaV/L ≈ 1.67, exit air 37.3 °C</li><li>(b) KaV/L ≈ 2.28, exit air 35.5 °C</li><li>A lower wet bulb needs a bigger tower: Merkel number rises 1.67 → 2.28.</li></ul></div><div class="call tip"><b class="k">Method note</b>For cross-flow the 4-point Merkel is an approximation (the air path changes with height); the counter-flow formula is used and this is stated.</div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-3"><header><span class="num">3</span><h3>Fill characteristic rewrite (Sheet 7 Q3)</h3><label class="done-box"><input type="checkbox" data-pid="s7-3"> I can solve this</label></header><div class="tags"><span class="tag">Algebra</span><span class="tag">Short</span></div><div class="stmt"><p>Kelly's fill type D, height 3 m, depth 2.67 m: Ka = 0.103 L<sup>0.49</sup> G<sup>0.51</sup>. Rewrite as KaY/L = α(L′/G′)<sup>β</sup>.</p></div><ol class='steps'><li><div class="eq wrap2">Ka·Y/L = 0.103·Y·L<sup>0.49−1</sup>·G<sup>0.51</sup> = 0.103·Y·L<sup>−0.51</sup>G<sup>0.51</sup> = 0.103·Y·(L/G)<sup>−0.51</sup></div></li><li>With Y = 3 m: α = 0.103×3 = <b>0.309</b>, β = <b>−0.51</b>.</li></ol><div class="ans"><h4>Final answer</h4><ul><li><span class='big'>KaY/L = 0.309 (L′/G′)<sup>−0.51</sup></span></li></ul></div><div class="call tip"><b class="k">Assumption</b>L′ and G′ are loadings (kg/s·m²), so the ratio equals L/G; Y is the fill height used in the formula, here 3 m.</div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-4"><header><span class="num">4</span><h3>Tower characteristic against L/G (Sheet 7 Q4)</h3><label class="done-box"><input type="checkbox" data-pid="s7-4"> I can solve this</label></header><div class="tags"><span class="tag">Kelly's chart</span><span class="tag noans">No sheet solution</span></div><div class="stmt"><p>Kelly's fill, 10 m high and 6 m deep: obtain the tower characteristic for CR = 10 °C, T<sub>wb</sub> = 21 °C, AP = 7 °C (T<sub>w2</sub> = 28 °C, T<sub>w1</sub> = 38 °C) over a range of L/G.</p></div><figure class="fig"><div class="figscroll"><svg viewBox="0 0 700 300" role="img" aria-label="Merkel number against water-to-air ratio" style="width:100%;max-width:700px;min-width:520px;height:auto"><defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" class="ahp"/></marker></defs><line x1="118.1" y1="16.0" x2="118.1" y2="252.0" class="grid"/><line x1="273.4" y1="16.0" x2="273.4" y2="252.0" class="grid"/><line x1="428.6" y1="16.0" x2="428.6" y2="252.0" class="grid"/><line x1="583.9" y1="16.0" x2="583.9" y2="252.0" class="grid"/><line x1="56.0" y1="218.3" x2="646.0" y2="218.3" class="grid"/><line x1="56.0" y1="150.9" x2="646.0" y2="150.9" class="grid"/><line x1="56.0" y1="83.4" x2="646.0" y2="83.4" class="grid"/><line x1="56.0" y1="16.0" x2="646.0" y2="16.0" class="grid"/><line x1="56.0" y1="252.0" x2="646.0" y2="252.0" class="ax"/><line x1="56.0" y1="16.0" x2="56.0" y2="252.0" class="ax"/><text x="118.1" y="266.0" class="ts" text-anchor="middle">0.5</text><text x="273.4" y="266.0" class="ts" text-anchor="middle">1</text><text x="428.6" y="266.0" class="ts" text-anchor="middle">1.5</text><text x="583.9" y="266.0" class="ts" text-anchor="middle">2</text><text x="50.0" y="221.8" class="ts" text-anchor="end">1</text><text x="50.0" y="154.4" class="ts" text-anchor="end">2</text><text x="50.0" y="86.9" class="ts" text-anchor="end">3</text><text x="50.0" y="19.5" class="ts" text-anchor="end">4</text><text x="351.0" y="282.0" class="ta" text-anchor="middle">L/G</text><text x="16.0" y="134.0" class="ta" text-anchor="middle" transform="rotate(-90 16 134.0)">KaV/L (Merkel number)</text><polyline points="118.1,221.0 195.7,214.3 273.4,205.5 351.0,193.3 428.6,174.7 583.9,48.8" class="acc"/><circle cx="118.1" cy="221.0" r="3.2" class="dot"/><circle cx="195.7" cy="214.3" r="3.2" class="dot"/><circle cx="273.4" cy="205.5" r="3.2" class="dot"/><circle cx="351.0" cy="193.3" r="3.2" class="dot"/><circle cx="428.6" cy="174.7" r="3.2" class="dot"/><circle cx="583.9" cy="48.8" r="3.2" class="dot"/></svg></div><figcaption>The tower demand rises steeply as L/G grows: more water per kg of air leaves less driving potential at the top.</figcaption></figure><ol class='steps'><li>Dry bulb taken as T<sub>wb</sub> + 3 °C (not given); for each L/G apply the 4-point Merkel integral.</li><li><table class='t'><tr><th>L/G</th><th>KaV/L (demand)</th></tr><tr><td>0.5</td><td>0.960</td></tr><tr><td>0.75</td><td>1.060</td></tr><tr><td>1</td><td>1.190</td></tr><tr><td>1.25</td><td>1.371</td></tr><tr><td>1.5</td><td>1.646</td></tr><tr><td>2</td><td>3.514</td></tr></table></li><li>The fill supplies KaV/L = α(L/G)<sup>β</sup> with the Kelly constants for your fill; the operating L/G is where supply = demand (the intersection).</li></ol><div class="ans"><h4>Final answer</h4><ul><li>Demand curve above; at L/G = 1.0 the Merkel number is 1.19.</li></ul></div><div class="call trap"><b class="k">Missing data</b>The Kelly constants for the chosen fill type are not in the problem, so the intersection (the actual L/G) cannot be computed here.</div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-5"><header><span class="num">5</span><h3>Cross-flow tower: air flow and fill (Sheet 7 Q5)</h3><label class="done-box"><input type="checkbox" data-pid="s7-5"> I can solve this</label></header><div class="tags"><span class="tag">Lecture 11</span><span class="tag noans">Partly solved</span></div><div class="stmt"><p>Cross-flow tower cools 4000 kg/min from 40 to 30 °C; ambient 24 °C, 50 % RH; water loading 14 300 kg/h·m²; L/G = 1.0. Estimate the air flow and fill volume.</p></div><ol class='steps'><li>L = 4000/60 = 66.7 kg/s; G = L/(L/G) = <b>66.7 kg/s</b>.</li><li><div class="eq wrap2">Plan area = 4000×60/14 300 = 16.78 m²</div></li><li>w₁ = 0.0093, T<sub>wb</sub> = 17.1 °C ⇒ AP = 12.9 °C. Merkel number: KaV/L = 0.688.</li><li><b>Fill volume</b> V = (KaV/L)·L/Ka needs Ka for the fill, which the problem does not give; with a Kelly fill constant Ka = α·L′<sup>…</sup> it follows directly.</li></ol><div class="ans"><h4>Final answer</h4><ul><li>Air flow ≈ 66.7 kg/s</li><li>Plan area ≈ 16.8 m²; KaV/L ≈ 0.69</li></ul></div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-7"><header><span class="num">6</span><h3>Wet tower balance and fan power (Sheet 7 Q7)</h3><label class="done-box"><input type="checkbox" data-pid="s7-7"> I can solve this</label></header><div class="tags"><span class="tag hit">Most exam-like</span><span class="tag noans">No sheet solution</span></div><div class="stmt"><p>A tower receives 7×10⁵ kg/min of water at 35 °C and 5.5×10⁵ kg/min of air at 1 atm, 17 °C, 50 % RH; exit air saturated at 27 °C. Find the exit water temperature, make-up % and fan power (Δp = 85 Pa), induced and forced draft.</p></div><ol class='steps'><li>L = 11667 kg/s, G = 9167 kg/s. Inlet: w₁ = 0.0060, h₁ = 32.3; exit (27 °C, saturated): w₂ = 0.0227, h₂ = 85.1 kJ/kg.</li><li><div class="eq wrap2">Evaporation E = G(w₂ − w₁) = 153.0 kg/s</div></li><li><div class="eq wrap2">(a) L·c<sub>pw</sub>(35 − T<sub>w2</sub>) = G(h₂ − h₁) − E·c<sub>pw</sub>T<sub>w2</sub> ⇒ T<sub>w2</sub> = 25.43 °C</div></li><li>(b) Make-up = E/L = <b>1.31 %</b>.</li><li>(c) Forced draft: inlet air ρ = 1.212 kg/m³ ⇒ V̇ = 7606 m³/s ⇒ P = 85×7606/1000 = <b>647 kW</b>. Induced draft: exit ρ = 1.161 ⇒ V̇ = 8078 m³/s ⇒ <b>687 kW</b> (ideal, η = 1).</li></ol><div class="ans"><h4>Final answer</h4><ul><li>(a) T<sub>w2</sub> ≈ 25.4 °C</li><li>(b) make-up ≈ 1.31 %</li><li>(c) 647 kW forced, 687 kW induced</li></ul></div><div class="call tip"><b class="k">Why induced is larger</b>Induced-draft fans handle the hotter, less dense exit air, so the same Δp needs a bigger volume flow.</div><p><a class="back" href="#top">↑ top</a></p></section><section class="prob" id="s7-x"><header><span class="num">7</span><h3>Not solved in detail: Q6 and Q8</h3><label class="done-box"><input type="checkbox" data-pid="s7-x"> I can solve this</label></header><div class="tags"><span class="tag noans">Method outline only</span></div><div class="stmt"><p>These need fill or capability data not provided in your folder.</p></div><ul class='small'><li><b>Q6 (field test, tower capability):</b> use the Merkel number from the test (KaV/L at 36 000 kg/min, 37 → 29 °C, T<sub>wb</sub> 21) to correct to the design L/G of 1.3; needs the capability chart of the tower.</li><li><b>Q8 (cross-flow, Kelly F):</b> fill volume = 36 ft × 18 ft × cell length (= 36 ft) × 16 cells; loadings = flow/(cell plan area); the air loading needs Kelly's F constants.</li></ul><p><a class="back" href="#top">↑ top</a></p></section><div class="pager"><a href="sheet6.html">← Sheet 6 · Combined</a><a href="finals.html">Finals →</a></div></main><script>
+(function(){
+var K='meps415-done-v1';
+function load(){try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}}
+var st=load();
+document.querySelectorAll('input[data-pid]').forEach(function(cb){
+  cb.checked=!!st[cb.dataset.pid];
+  cb.addEventListener('change',function(){var s=load();if(cb.checked)s[cb.dataset.pid]=1;else delete s[cb.dataset.pid];save(s);mark();});
+});
+function mark(){var s=load();document.querySelectorAll('.jump a[data-pid]').forEach(function(a){a.classList.toggle('done',!!s[a.dataset.pid]);});
+ document.querySelectorAll('[data-meter]').forEach(function(m){var pre=m.dataset.meter,tot=+m.dataset.total,n=0;Object.keys(s).forEach(function(k){if(k.indexOf(pre+'-')===0)n++;});
+  var bar=m.querySelector('i');if(bar)bar.style.width=Math.min(100,Math.round(100*n/tot))+'%';var t=m.parentNode.querySelector('.cnt');if(t)t.textContent=n+' / '+tot+' done';});}
+mark();
+var tb=document.getElementById('themebtn');
+if(tb){tb.addEventListener('click',function(){var r=document.documentElement;var cur=r.getAttribute('data-theme');var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;r.setAttribute('data-theme',dark?'light':'dark');});}
+})();
+</script></body></html>
